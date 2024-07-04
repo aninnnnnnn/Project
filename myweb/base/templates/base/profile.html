@@ -3,7 +3,21 @@
 {% block title %} <title>Profile Page</title> {% endblock %}
 
 {% block content %}
-    <h1>Profile</h1>
+    <h1>My Albums</h1>
+
+<div style="display: flex;">
+      {% for album in albums %}
+       <div class="card" style="width: 18rem; margin-left: 30px;">
+                <img src="{{ album.cover}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{album.name | slice:":28"}}</h5>
+                  <p class="card-text">By {{album.artist}}</p>
+                  <p class="card-text">Release Date: {{album.year}}</p>
+                  <a href="#" class="btn btn-primary">Add To Cart</a>
+                </div>
+       </div>
+      {% endfor %}
+    </div>
 
 {% endblock content %}
 

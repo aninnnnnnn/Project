@@ -1,0 +1,45 @@
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+    }
+
+    .genres {
+        margin: 50px 30px;
+    }
+</style>
+
+
+<div class="home-container">
+
+    <div class="genres">
+        <h1>Genres:</h1>
+        <br>
+        <a href="{{request.path}}">All ({{genres.count}})</a>
+        {% for genre in genres %}
+            <hr>
+            <a href="{{request.path}}?q={{genre.name}}">{{genre}} ({{genre.albums.count}})</a>
+        {%endfor%}
+
+
+
+    </div>
+
+
+    <div>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+              {% for album in albums %}
+               <div class="card" style="width: 16rem; margin-left: 30px;">
+                        <img src="{{ album.cover}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">{{album.name | slice:":28"}}</h5>
+                          <p class="card-text">By {{album.artist}}</p>
+                          <p class="card-text">Release Date: {{album.year}}</p>
+                          <a href="#" class="btn btn-primary">Add To Cart</a>
+                        </div>
+               </div>
+              {% endfor %}
+        </div>
+    </div>
+
+</div>

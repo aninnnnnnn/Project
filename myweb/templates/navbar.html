@@ -27,14 +27,14 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" role="search" method="GET" action="">
+        <input name="q" class="form-control me-2" type="search" placeholder="Search Album" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;&nbsp;
       </form>
 
 
       {% if request.user.is_authenticated %}
-      <form class="d-flex" role="search">
+      <form class="d-flex">
          <a href="{% url 'profile' request.user.id %}" class="btn btn-outline-success" role="button">Profile</a>
       </form>
       {% endif %}

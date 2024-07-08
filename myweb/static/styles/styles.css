@@ -1,0 +1,49 @@
+body{
+    background-color: white;
+}
+
+a{
+    text-decoration: none;
+    color: #495057;
+}
+
+
+
+.search-btn-custom {
+  background-color: white; /* Background color */
+  color: #495057; /* Text color */
+  border-color: white; /* Border color */
+  border-radius: 0px; /* Border radius */
+}
+
+.search-btn-custom:hover {
+  background-color: #495057; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+  border-color: #495057; /* Border color on hover */
+}
+
+.profile-btn-custom {
+  background-color: white; /* Background color */
+  color: #495057; /* Text color */
+  border-color: white; /* Border color */
+  border-radius: 0px; /* Border radius */
+}
+
+.profile-btn-custom:hover {
+  background-color: #495057; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+  border-color: #495057; /* Border color on hover */
+}
+
+/* Custom CSS for search input border color */
+.search-input-custom {
+  border-color: #EEEEEE; /* Border color */
+  color: #495057; /* Text color */
+  border-radius: 0px; /* Border radius */
+}
+
+.search-input-custom:focus {
+  border-color: #F5F7F8; /* Border color on focus */
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25); /* Outline color on focus */
+  color: #495057; /* Text color on focus */
+}

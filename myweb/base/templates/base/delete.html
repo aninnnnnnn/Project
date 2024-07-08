@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block title %} <title>Delete Page</title> {% endblock %}
+
+{% block content %}
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Are you sure you want to delete album "{{ album }}"</p>
+    <input type="submit" value="Delete">
+
+</form>
+
+
+{% endblock content %}

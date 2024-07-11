@@ -1,99 +1,132 @@
 <style>
-    .home-container {
-        display: grid;
-        grid-template-columns: 1fr 6fr;
-    }
-
-    .genres {
-        margin: 50px 20px;
-    }
-  .card {
-      width: 16rem;
-      margin-left: 30px;
-      border: 1px solid #black;
-      border-radius: 0px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.01);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    .card img {
-      border-radius: 0;
-      width: 100%;
-      height: auto;
-      transition: opacity 0.3s;
-    }
-    .card-body {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 15px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
-    .card:hover .card-body {
-      opacity: 1;
-    }
-    .card-title {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-    }
-    .card-text {
-      margin-bottom: 5px;
-    }
-    .btn-dark {
-      display: inline-block;
-      padding: 8px 12px;
-      background-color: black;
-      border: 0px solid #black;
-      color: #black;
-      text-decoration: none;
-      border-radius: 0px;
-      transition: background-color 0.3s;
-      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
-      outline: none;
-      margin: 5px;
-      width: 80px;
-    }
-    .btn-light {
-      display: inline-block;
-      padding: 6px 12px;
-      background-color: white;
-      border: 0px solid #white;
-      color: #black;
-      text-decoration: none;
-      border-radius: 0px;
-      transition: background-color 0.3s;
-      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
-      outline: none;
-      margin: 5px;
-      width: 80px;
-    }
-    .btn-dark:hover {
-      background-color: #686D76;
-      border-color: #white;
-      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
-    }
-    .card-body .button-container {
-    display: flex;
-    justify-content: center;
-<!--    gap: 10px;-->
+.home-container {
+ display: grid;
+ grid-template-rows: 1fr 5fr;
 }
-    .spacing {
-    margin-top: 10px;
+
+.genres {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 50px 50px;
+    gap: 15px;
+}
+
+.genre-box {
+    padding: 10px 30px;
+    border: 1px solid black;
+    border-radius: 0px;
+    background-color: white;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.genre-box:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.genre-box a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: center;
+}
+
+.card-container {
+    padding: 10px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: left;
+}
+
+.card {
+  width: 21.5rem;
+  margin-left: 0px;
+  border: 1px solid #black;
+  border-radius: 0px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.card img {
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s;
+}
+.card-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.card:hover .card-body {
+  opacity: 1;
+}
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+.card-text {
+  margin-bottom: 5px;
+}
+.btn-dark {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: black;
+  border: 0px solid #black;
+  color: #black;
+  text-decoration: none;
+  border-radius: 0px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin: 5px;
+  width: 80px;
+}
+.btn-light {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: white;
+  border: 0px solid #white;
+  color: #black;
+  text-decoration: none;
+  border-radius: 0px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin: 5px;
+  width: 80px;
+}
+.btn-dark:hover {
+  background-color: #686D76;
+  border-color: #white;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+}
+.card-body .button-container {
+display: flex;
+justify-content: center;
+}
+.spacing {
+margin-top: 10px;
 }
 
 
@@ -102,22 +135,23 @@
 
 <div class="home-container">
 
-    <div class="genres">
-        <h1>Genres:</h1>
-        <br>
-        <a href="{{request.path}}">All ({{genres.count}})</a>
+     <div class="genres">
+        <div class="genre-box">
+            <a href="{{request.path}}">All ({{genres.count}})</a>
+        </div>
         {% for genre in genres %}
-            <hr>
+        <div class="genre-box">
             <a href="{{request.path}}?q={{genre.name}}">{{genre}} ({{genre.albums.count}})</a>
-        {%endfor%}
+        </div>
+        {% endfor %}
     </div>
 
 
     <div>
-        <div class="card-container"  style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <div class="card-container" >
               {% for album in albums %}
-               <div class="card" style="width: 20rem; margin-left: 2px;">
-                        <img src="{{ album.cover}}" class="card-img-top" alt="Album cover">
+               <div class="card">
+                        <img src="{{ album.cover.url }}" class="card-img-top" alt="Album cover">
                         <div class="card-body">
                           <h5 class="card-title">{{album.name | slice:":40"}}</h5>
                           <p class="card-text">By {{album.artist}}</p>

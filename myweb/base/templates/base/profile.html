@@ -2,9 +2,18 @@
 
 {% block title %} <title>Profile Page</title> {% endblock %}
 
+
+
 {% block content %}
 
-       <h1> My Albums</h1>
+<style>
+.left-align {
+    text-align: left;
+    margin-left: 50px;
+}
+</style>
+
+       <h1 class="left-align">My Albums</h1>
     <hr>
 
  {% include 'base/albums.html' %}

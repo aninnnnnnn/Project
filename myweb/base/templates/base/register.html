@@ -1,0 +1,104 @@
+<style>
+
+    body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000000;
+    background-image: url('https://st2.depositphotos.com/4173075/11144/v/950/depositphotos_111446702-stock-illustration-music-symbols-seamless-pattern-rock.jpg');
+
+
+}
+
+.Register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 128vh;
+}
+
+.Register-form {
+     background: #ffffff;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+
+}
+
+.Register-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Register-form input[type="text"], .Register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 0.1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.Register-form input[type="submit"] {
+    width: 100%;
+    background: #black;
+    color: #black;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.Register-form input[type="submit"]:hover {
+    background: #black;
+}
+
+.Register-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.Register-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Register-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Register-form a:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+{% extends 'main.html' %}
+
+{% block title %} <title>Register Page</title> {% endblock %}
+
+{% block content %}
+
+    <div class="register-container">
+        <form class="register-form" method="POST" action="">
+            {% csrf_token %}
+            <h4>Register:</h4>
+            {{ form.as_p }}
+
+            <br>
+            <input type="submit" value="Register" >
+            <br><br>
+            <p>Already signed up?</p>
+            <a href="{% url 'login' %}">Login</a>
+        </form>
+    </div>
+
+{% endblock content %}
+

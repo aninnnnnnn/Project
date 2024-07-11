@@ -1,0 +1,152 @@
+<style>
+
+    body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000000;
+    background-image: url('https://st2.depositphotos.com/4173075/11144/v/950/depositphotos_111446702-stock-illustration-music-symbols-seamless-pattern-rock.jpg');
+
+
+}
+
+.Add-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Add-form {
+     background: #ffffff;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+
+}
+
+.Add-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Addr-form input[type="submit"] {
+    width: 100%;
+    background: #black;
+    color: #black;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.Add-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.Add-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Add-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Add-form a:hover {
+    text-decoration: underline;
+}
+
+.Add-form input[type="text"], .Add-form input[type="password"], .Add-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.Add-form input[type="submit"] {
+    background: #000; /* Black background */
+    color: #fff; /* White text */
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.Add-form input[type="submit"]:hover {
+    background: #black; /* Darker shade of black on hover */
+}
+
+</style>
+
+{% extends 'main.html' %}
+
+{% block title %} <title>Add Page</title> {% endblock %}
+
+{% block content %}
+
+    <div class="add-container">
+        <form class="Add-form" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>Upload Album:</h4>
+            <div>
+                <label>Album Cover:</label>
+                {{form.cover}}
+            </div>
+            <br>
+            <div>
+                <label>Album Title:</label>
+                {{form.name}}
+            </div>
+
+            <div>
+                 <label for="album_artist">Artist:</label>
+                    <input required type="text" name="artist" list="artist-list" >
+                    <datalist id="artist-list">
+                        {% for artist in artists %}
+                            <select id="album_artist">
+                                <option value="{{ artist.name }}">{{ artist.name }}</option>
+                            </select>
+                        {% endfor %}
+
+                    </datalist>
+            </div>
+
+            <div>
+                    <label for="album_genre">Genre:</label>
+                    <input required type="text" name="genre" list="genre-list" >
+                    <datalist id="genre-list">
+                        {% for genre in genres %}
+                            <select id="album_genre">
+                                <option value="{{ genre.name }}">{{ genre.name }}</option>
+                            </select>
+                        {% endfor %}
+
+                    </datalist>
+            </div>
+            <div>
+                <label>Release Date:</label>
+                {{form.year}}
+            </div>
+
+            <div>
+                <label>Audio Files:</label>
+                {{ form.file }}
+            </div>
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+{% endblock content %}
+

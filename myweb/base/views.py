@@ -100,7 +100,7 @@ def add_album(request):
     genres = Genre.objects.all()
     form = AlbumForm()
 
-    if request == 'POST':
+    if request.method == 'POST':
         album_artist = request.POST.get('artist')
         album_genre = request.POST.get('genre')
 

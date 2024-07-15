@@ -15,4 +15,6 @@ urlpatterns = [
     path('register/', views.register_page, name='register'),
     path('add/', views.add_album, name='add'),
     path('details/<str:id>/', views.details, name='details'),
+    path('delete_album/<str:id>/', views.delete_album, name='delete_album'),
+    path('update_user/', views.update_user, name='update_user'),
 ]

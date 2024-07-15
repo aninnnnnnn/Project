@@ -173,10 +173,13 @@ margin-top: 10px;
                           <div class="button-container">
                               {% if request.user.is_authenticated %}
                                 {% if album in request.user.albums.all%}
-                                <a href="{% url 'delete' album.id %}" type="button" class="btn btn-dark">Delete</a>
+                                <a href="{% url 'delete' album.id %}" type="button" class="btn btn-dark">Drop</a>
                                 {% else %}
                                 <a href="{% url 'adding' album.id %}" type="button" class="btn btn-light">Add</a>
                                 <div class="spacing"></div>
+                                {% endif %}
+                                {% if request.user == album.creator %}
+                                <a href="{% url 'delete_album' album.id %}" type="button" class="btn btn-dark">Delete</a>
                                 {% endif %}
                               {% endif %}
                                 <a href="{% url 'details' album.id %}" type="button" class="btn btn-dark">Details</a>

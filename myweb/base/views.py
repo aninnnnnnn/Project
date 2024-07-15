@@ -4,7 +4,7 @@ from .models import Album, User, Genre, Artist
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationFrom, AlbumForm
+from .forms import MyUserCreationFrom, AlbumForm, UserForm
 from .seeder import seeder_func
 from django.contrib import messages
 
@@ -14,7 +14,7 @@ def home(request):
     seeder_func()
     # albums = Album.objects.all()
     albums = Album.objects.filter(Q(name__icontains=q) | Q(genre__name__icontains=q) | Q(artist__name__icontains=q))
-    albums = list(set(albums))
+    albums = list(dict.fromkeys(albums))
     genres = Genre.objects.all()
     context = {"albums": albums, "genres": genres}
     return render(request, 'base/home.html', context)
@@ -113,8 +113,10 @@ def add_album(request):
         new_album = Album(cover=request.FILES['cover'], name=form.data['name'], artist=artist, year=form.data['year'],
                           file=request.FILES['file'], creator=request.user)
 
-        new_album.save()
-        new_album.genre.add(genre)
+        if not (Album.objects.filter(file=new_album.file)) or (Album.objects.filter(name=new_album.name)):
+            new_album.save()
+            new_album.genre.add(genre)
+            return redirect('home')
 
         return redirect('home')
 
@@ -125,4 +127,28 @@ def add_album(request):
 def details(request, id):
     album = Album.objects.get(id=id)
     return render(request, 'base/details.html', {'album':album})
+
+
+def delete_album(request, id):
+    album = Album.objects.get(id=id)
+    if request.method == 'POST':
+        album.file.delete()
+        album.cover.delete()
+        album.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'album':album})
+
+
+@login_required(login_url='login')
+def update_user(request):
+    user = request.user
+    form = UserForm(instance=user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', user.id)
+
+    return render(request, 'base/update_user.html', {'form': form})
 

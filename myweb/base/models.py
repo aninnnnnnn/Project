@@ -28,7 +28,7 @@ class Album(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # updated = models.DateTimeField(auto_now=True)
     class Meta:
-        ordering = ['name']
+        ordering = ['-created']
 
     def __str__(self):
         return f"{self.artist} - {self.name}"
@@ -36,4 +36,6 @@ class Album(models.Model):
 
 class User(AbstractUser):
     albums = models.ManyToManyField(Album, blank=True, related_name='users')
+    bio = models.TextField(null=True)
+    avatar = models.ImageField(null=True, default='avatar.jpg')
 

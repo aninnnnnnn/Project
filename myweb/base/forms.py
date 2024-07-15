@@ -14,3 +14,9 @@ class AlbumForm(ModelForm):
         model = Album
         fields = '__all__'
 
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'username', 'email', 'bio', 'albums']
+

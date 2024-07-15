@@ -61,6 +61,17 @@
     color: #black;
   }
 
+    .navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
 </style>
 
 
@@ -93,16 +104,25 @@
 <!--          <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
 <!--        </li>-->
       </ul>
-      <form class="d-flex" role="search" method="GET" action="">
-        <input name="q" class="form-control me-2 search-input-custom" type="search" placeholder="Search Album" aria-label="Search">
-        <button class="btn btn-outline-success search-btn-custom" type="submit">Search</button>&nbsp;&nbsp;
-      </form>
+      <div class="navbar-center">
+        <form class="d-flex search-container" role="search" method="GET" action="">
+          <input name="q" class="form-control me-2 search-input-custom" type="search" placeholder="Search Album" aria-label="Search">
+          <button class="btn btn-outline-success search-btn-custom" type="submit">Search</button>
+        </form>
+      </div>
 
 
       {% if request.user.is_authenticated %}
-      <form class="d-flex">
-         <a href="{% url 'profile' request.user.id %}" class="btn btn-outline-success profile-btn-custom" role="button">Profile</a>
-      </form>
+
+      <div style="margin: 0px 12px;">
+          <a href="{% url 'profile' request.user.id %}">
+            <div>
+              <img src="{{ request.user.avatar.url }}" width="32px" height="32px" style="border-radius: 50%;">
+<!--              {{ request.user.username }}-->
+            </div>
+          </a>
+      </div>
+
       <form class="d-flex">
          <a href="{% url 'logout' %}" class="btn btn-outline-success profile-btn-custom" role="button">Log Out</a>
       </form>

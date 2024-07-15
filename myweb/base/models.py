@@ -17,12 +17,18 @@ class Genre(models.Model):
 
 
 class Album(models.Model):
+    creator = models.ForeignKey('User', on_delete=models.SET("Unknown Creator"))
     artist = models.ForeignKey(Artist, on_delete=models.SET("Unknown Artist"))
     cover = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=200)
     year = models.CharField(max_length=200)
     genre = models.ManyToManyField(Genre, blank=True, related_name='albums')
     file = models.ImageField(null=True, blank=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    # updated = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return f"{self.artist} - {self.name}"

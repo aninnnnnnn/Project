@@ -1,24 +1,32 @@
 <style>
 .home-container {
- display: grid;
- grid-template-rows: 1fr 5fr;
+     display: grid;
+     grid-template-rows: auto 1fr;
+     gap: 100xp;
 }
 
 .genres {
-
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    flex-wrap: nowrap;
+    grid-auto-flow: column;
+    grid-auto-columns: 15%;
     align-items: center;
-    margin: 50px 50px;
-    gap: 15px;
+    margin: 0px 50px;
+
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 
 .genre-box {
     padding: 10px 30px;
-    border: 1px solid black;
     border-radius: 0px;
-    background-color: white;
+    background-color: #F5F7F8;
     transition: background-color 0.3s, box-shadow 0.3s;
+
 }
 
 .genre-box:hover {
@@ -37,12 +45,12 @@
     padding: 10px 50px;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 3px;
     justify-content: left;
 }
 
 .card {
-  width: 21.5rem;
+  width: 22rem;
   margin-left: 0px;
   border: 1px solid #black;
   border-radius: 0px;
@@ -90,6 +98,7 @@
 }
 .btn-dark {
   display: inline-block;
+  wrap: flex;
   padding: 8px 12px;
   background-color: black;
   border: 0px solid #black;
@@ -132,7 +141,10 @@ margin-top: 10px;
 
 </style>
 
-
+<div>
+    <a href="{% url 'add' %}" type="button" class="btn btn-dark" style = 'margin-left: 50px; width: 180px;'> Add Album </a>
+</div>
+<br>
 <div class="home-container">
 
      <div class="genres">
@@ -143,10 +155,10 @@ margin-top: 10px;
         <div class="genre-box">
             <a href="{{request.path}}?q={{genre.name}}">{{genre}} ({{genre.albums.count}})</a>
         </div>
+
         {% endfor %}
-    </div>
-
-
+     </div>
+    <br>
     <div>
         <div class="card-container" >
               {% for album in albums %}
@@ -167,7 +179,7 @@ margin-top: 10px;
                                 <div class="spacing"></div>
                                 {% endif %}
                               {% endif %}
-                                <a type="button" class="btn btn-dark">Listen</a>
+                                <a href="{% url 'details' album.id %}" type="button" class="btn btn-dark">Details</a>
                           </div>
 
                         </div>
@@ -177,3 +189,4 @@ margin-top: 10px;
     </div>
 
 </div>
+

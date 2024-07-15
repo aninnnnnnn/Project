@@ -5,11 +5,13 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import MyUserCreationFrom, AlbumForm
+from .seeder import seeder_func
+from django.contrib import messages
 
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
-
+    seeder_func()
     # albums = Album.objects.all()
     albums = Album.objects.filter(Q(name__icontains=q) | Q(genre__name__icontains=q) | Q(artist__name__icontains=q))
     albums = list(set(albums))
@@ -61,7 +63,7 @@ def login_page(request):
         try:
             user = User.objects.get(username=username)
         except:
-            pass  # error message
+            messages.error(request, 'User does not exist')
 
         user = authenticate(request, username=username, password=password)
 
@@ -69,7 +71,7 @@ def login_page(request):
             login(request, user)
             return redirect('home')
         else:
-            pass  # error
+            messages.error(request, 'User or Password is not correct!')
 
     return render(request, 'base/login.html')
 
@@ -109,7 +111,7 @@ def add_album(request):
 
         form = AlbumForm(request.POST)
         new_album = Album(cover=request.FILES['cover'], name=form.data['name'], artist=artist, year=form.data['year'],
-                          file=request.FILES['file'])
+                          file=request.FILES['file'], creator=request.user)
 
         new_album.save()
         new_album.genre.add(genre)
@@ -118,3 +120,9 @@ def add_album(request):
 
     context = {'form': form, 'artists': artists, 'genres': genres}
     return render(request, 'base/add_album.html', context)
+
+
+def details(request, id):
+    album = Album.objects.get(id=id)
+    return render(request, 'base/details.html', {'album':album})
+

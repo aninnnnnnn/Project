@@ -1,0 +1,154 @@
+    <style>
+
+    body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000000;
+    background-image: url('https://img.freepik.com/premium-photo/vintage-white-colour-textured-background_78502-707.jpg?w=996');
+
+
+}
+
+.details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 185vh;
+}
+
+.details-form {
+    align-items: center;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 800px;
+
+}
+
+.details-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.details-form input[type="submit"] {
+    width: 100%;
+    background: #black;
+    color: #black;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.details-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.details-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.details-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.details-form a:hover {
+    text-decoration: underline;
+}
+
+.details-form input[type="text"], .details-form input[type="password"], .details-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.details-form input[type="submit"] {
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.details-form input[type="submit"]:hover {
+    background: #black;
+}
+.btn-dark {
+  display: inline-block;
+  wrap: flex;
+  padding: 8px 12px;
+  background-color: black;
+  border: 0px solid #black;
+  color: #black;
+  text-decoration: none;
+  border-radius: 0px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin: 5px;
+  width: 80px;
+  align: center;
+}
+
+</style>
+
+{% extends 'main.html' %}
+
+{% block title %} <title>Details Page</title> {% endblock %}
+
+{% block content %}
+
+    <div class="details-container">
+        <form class="details-form" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>Review Album Details:</h4>
+            {% load static %}
+
+            <div>
+                <img src="{% static album.cover.url %}" alt="" style="width: 320px; height: 320px;">
+            </div>
+            <br>
+            <div>
+                {{album.name}}
+            </div>
+
+            <div>
+                {{album.artist}}
+            </div>
+
+            <div>
+                {% for genre in album.genre.all %}
+                {{genre}} |
+                {% endfor %}
+
+            </div>
+            <div>
+                {{album.year}}
+            </div>
+            {% load static %}
+            <div>
+                <label> Condition: </label>
+                <img src="{% static album.file.url %}" alt="" style="width: 720px; height: auto;">
+            </div>
+            <br>
+            <a href="{% url 'adding' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px;">Add To Profile</a>
+
+        </form>
+    </div>
+
+{% endblock content %}
+

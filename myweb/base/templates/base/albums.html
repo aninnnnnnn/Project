@@ -153,7 +153,7 @@ margin-top: 10px;
         </div>
         {% for genre in genres %}
         <div class="genre-box">
-            <a href="{{request.path}}?q={{genre.name}}">{{genre}} ({{genre.albums.count}})</a>
+            <a href="{{request.path}}?q={{genre.name}}">{{genre}}</a>
         </div>
 
         {% endfor %}

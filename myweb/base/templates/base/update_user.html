@@ -9,7 +9,7 @@
         <form class="update-form" method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <a href="{{ request.META.HTTP_REFERER }}"> Cancel </a>
-            <h4>update:</h4>
+            <h4>Update Profile:</h4>
                 {% for field in form %}
             <div>
                 <label>{{ field.label }}</label>
@@ -17,8 +17,6 @@
             </div>
 
                 {% endfor %}
-
-
             <br>
             <input type="submit" value="Update" >
 

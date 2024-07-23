@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    background: #white;
+    background: #ffffff;
 
 }
 
@@ -13,11 +13,11 @@ body, html {
 }
 
 .Add-form {
-    background: #ffffff;
+    background: #FFDE4D;
     padding: 40px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 500px;
 
 }
 
@@ -71,7 +71,7 @@ body, html {
 
 .Add-form input[type="submit"] {
     background: #000;
-    color: #fff;
+    color: #ffffff;
     border: none;
     cursor: pointer;
     font-weight: bold;
@@ -145,11 +145,11 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
 }
 
 .login-form {
-     background: #ffffff;
+    background: #FFDE4D;
     padding: 40px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -174,8 +174,8 @@ body, html {
 
 .login-form input[type="submit"] {
     width: 100%;
-    background: #black;
-    color: #black;
+    background: #111111;
+    color: #F6F6F6;
     padding: 10px;
     border: none;
     border-radius: 0px;
@@ -218,11 +218,11 @@ body, html {
 }
 
 .Register-form {
-     background: #ffffff;
+    background: #FFDE4D;
     padding: 40px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 500px;
 
 }
 
@@ -243,8 +243,8 @@ body, html {
 
 .Register-form input[type="submit"] {
     width: 100%;
-    background: #black;
-    color: #black;
+    background: #151515;
+    color: #F6F6F6;
     padding: 10px;
     border: none;
     border-radius: 0px;
@@ -288,7 +288,7 @@ body, html {
 }
 
 .update-form {
-     background: #ffffff;
+     background: #FFDE4D;
     padding: 40px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -312,8 +312,8 @@ body, html {
 
 .update-form input[type="submit"] {
     width: 100%;
-    background: #black;
-    color: #black;
+    background: #000000;
+    color: #ffffff;
     padding: 10px;
     border: none;
     border-radius: 0px;
@@ -355,7 +355,7 @@ body, html {
 }
 
 .delete-form {
-     background: #ffffff;
+     background: #FFDE4D;
     padding: 40px;
     border-radius: 0px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -380,8 +380,8 @@ body, html {
 
 .delete-form input[type="submit"] {
     width: 100%;
-    background: #black;
-    color: #black;
+    background: #000000;
+    color: #ffffff;
     padding: 10px;
     border: none;
     border-radius: 0px;

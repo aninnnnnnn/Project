@@ -6,3 +6,4 @@ class AlbumSerializer(ModelSerializer):
     class Meta:
         model = Album
         fields = '__all__'
+

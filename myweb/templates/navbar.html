@@ -1,6 +1,4 @@
 <style>
-
-
   .search-btn-custom {
   background-color: white;
   color: #495057;
@@ -105,7 +103,7 @@
 <!--        </li>-->
       </ul>
       <div class="navbar-center">
-        <form class="d-flex search-container" role="search" method="GET" action="">
+        <form class="d-flex" role="search" method="GET" action="">
           <input name="q" class="form-control me-2 search-input-custom" type="search" placeholder="Search Album" aria-label="Search">
           <button class="btn btn-outline-success search-btn-custom" type="submit">Search</button>
         </form>
@@ -122,14 +120,9 @@
             </div>
           </a>
       </div>
-
-      <form class="d-flex">
          <a href="{% url 'logout' %}" class="btn btn-outline-success profile-btn-custom" role="button">Log Out</a>
-      </form>
       {% else %}
-      <form class="d-flex">
          <a href="{% url 'login' %}" class="btn btn-dark" role="button">Log In</a>
-      </form>
       {% endif %}
     </div>
   </div>

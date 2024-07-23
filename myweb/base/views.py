@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Album, User, Genre, Artist
+from .models import Album, User, Genre, Artist, Comment
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -40,7 +40,7 @@ def adding(request, id):
     album = Album.objects.get(id=id)
     user = request.user
     user.albums.add(album)
-    return redirect('home')
+    return redirect('profile', request.user.id)
 
 
 def delete(request, id):
@@ -49,7 +49,7 @@ def delete(request, id):
         request.user.albums.remove(album)
         return redirect('profile', request.user.id)
 
-    return render(request, 'base/delete.html', {'album': album})
+    return render(request, 'base/delete.html', {'obj': album})
 
 
 def login_page(request):
@@ -124,9 +124,17 @@ def add_album(request):
     return render(request, 'base/add_album.html', context)
 
 
+@login_required(login_url='login')
 def details(request, id):
     album = Album.objects.get(id=id)
-    return render(request, 'base/details.html', {'album':album})
+    album_comments = album.comment_set.all().order_by('-created')
+    if request.method == 'POST':
+        comment = Comment.objects.create(
+            user=request.user,
+            album=album,
+            body=request.POST.get('body')
+        )
+    return render(request, 'base/details.html', {'album':album, 'comments': album_comments})
 
 
 def delete_album(request, id):
@@ -136,7 +144,7 @@ def delete_album(request, id):
         album.cover.delete()
         album.delete()
         return redirect('home')
-    return render(request, 'base/delete.html', {'album':album})
+    return render(request, 'base/delete.html', {'obj': album})
 
 
 @login_required(login_url='login')
@@ -152,3 +160,11 @@ def update_user(request):
 
     return render(request, 'base/update_user.html', {'form': form})
 
+
+def delete_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    album = comment.album
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('details', album.id)
+    return render(request, 'base/delete.html', {'obj': comment})

@@ -5,12 +5,14 @@
 {% block content %}
 
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <p>Are you sure you want to delete album "{{ album }}"</p>
-    <input type="submit" value="Delete">
-
-</form>
-
+    <div class="delete-container">
+        <form class="delete-form" method="POST" action="">
+            {% csrf_token %}
+            <p>Are you sure you want to delete album: </p>
+            <p>"{{ obj }}"</p>
+            <br>
+            <input type="submit" value="Delete">
+        </form>
+    </div>
 
 {% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block title %} <title>Shows Page</title> {% endblock %}
+
+{% block content %}
+<style>
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+    .gallery-item {
+        justify-content: center;
+        margin: 80px;
+        flex: 1 1 calc(33% - 32px);
+        box-sizing: border-box;
+        border: 0px solid #ddd;
+        border-radius: 0px;
+    }
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .gallery-item .info {
+        width: 80%;
+        padding: 16px;
+        background: #f8f9fa;
+    }
+    .gallery-item .info h3 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+    .gallery-item .info p {
+        margin: 8px 0 0;
+        font-size: 1rem;
+        color: #555;
+    }
+</style>
+<br>
+    <h1 style="margin-left:80px;">DON'T MISS...</h1>
+
+    <div class="gallery">
+    {% for show in shows %}
+    <div class="gallery-item">
+        <img src="{{ show.show.url }}" alt="Show Image">
+        <div class="info">
+            <h3>Title: {{show.name}}</h3>
+            <p>Date: {{show.showdate}}</p>
+        </div>
+    </div>
+
+</div>
+
+ {% endfor %}
+{% endblock content %}
+

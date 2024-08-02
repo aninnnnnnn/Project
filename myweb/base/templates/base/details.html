@@ -1,5 +1,3 @@
-
-
 {% extends 'main.html' %}
 
 {% block title %} <title>Details Page</title> {% endblock %}
@@ -7,42 +5,82 @@
 {% block content %}
 
     <div class="details-container">
+
         <form class="details-form" method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
-            <h4>Review Album Details:</h4>
+
             {% load static %}
             <br>
-            <div>
-                <img src="{% static album.cover.url %}" alt="" style="width: 320px; height: 320px;">
+            <div style="display: flex; align-items: flex-start; gap: 40px;">
+                <div>
+                    <img src="{% static album.cover.url %}" alt="" style="width: 320px; height: 320px;">
+                </div>
+                <br>
+                <div>
+                    <div>
+                        Album: {{album.name}}
+                    </div>
+
+                    <div>
+                        Artist: {{album.artist}}
+                    </div>
+
+                    <div>
+                        Genre:
+                        {% for genre in album.genre.all %}
+                        {{genre}} |
+                        {% endfor %}
+
+                    </div>
+                    <div>
+                        Release Year: {{album.year}}
+                    </div>
+
+                </div>
             </div>
             <br>
-            <div>
-                Album: {{album.name}}
-            </div>
 
-            <div>
-                Artist: {{album.artist}}
-            </div>
+            <br>
 
-            <div>
-                {% for genre in album.genre.all %}
-                Genre: {{genre}} |
+
+        <div class="playlist-container" >
+            <h3>Playlist:</h3>
+            <div class="playlist-grid" style="margin-top: 20px;">
+                {% for song in album.songs.all %}
+                    <div class="playlist-item">
+                        <div class="playlist-info" style="margin-bottom: 10px; display: flex; gap: 10px;">
+                            <span style="display: block; font-weight: bold; margin-bottom: 5px; width: 16%;">{{ song.title }}</span>
+
+                            <audio controls style="width: 50%; height: 32px; align: right;">
+                                <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="playlist-item" style="flex: 1 1 100%; text-align: left;">
+                        <span>No songs available for this album.</span>
+                    </div>
                 {% endfor %}
 
             </div>
-            <div>
-                Release Year: {{album.year}}
-            </div>
-            <br>
+        </div>
 
-            <div>
-                <label> Condition: </label>
-                <br>
-                <img src="{% static album.file.url %}" alt="" style="width: 720px; height: auto;">
-            </div>
+
+         <div>
             <br>
-            <a href="{% url 'adding' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px;">Add To Profile</a>
+            <a href="{% url 'adding' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px; color: #ffffff;">Add To Profile</a>
+            {% if request.user == album.creator %}
+            <a href="{% url 'update_album' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px; color: #495057; background: white; border-color:white;">Update Album</a>
+            {% endif %}
+             {% if request.user == album.creator %}
+            <a href="{% url 'update_song' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px; color: #495057; background: white; border-color:white;">Update Song</a>
+            {% endif %}
             <hr>
+         </div>
+
+
+         <div>
             <h3>Discussion:</h3>
             <br>
             <form class="details-form" method="POST" action="">
@@ -57,10 +95,11 @@
                                     <span>{{ comment.user.username }}</span>
                             </a>
                             <span>{{ comment.created | timesince }} ago</span>
-                    </div>
-                    <div style="margin-right: 620px;">
+                            <div style="margin-left: 32px;">
                             <p>{{ comment.body }}</p>
+                            </div>
                     </div>
+
                     <div style="margin-left: 32px;">
                         {% if request.user == comment.user %}
                             <a href="{% url 'delete_comment' comment.id %}">Delete</a>
@@ -70,8 +109,10 @@
 
                 {% endfor %}
             </form>
-        </form>
+         </div>
+
     </div>
+
 
 {% endblock content %}
 

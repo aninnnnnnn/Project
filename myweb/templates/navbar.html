@@ -81,43 +81,76 @@
     display: flex;
     align-items: center;
   }
+.genres {
+    display: grid;
+    flex-wrap: nowrap;
+    grid-auto-flow: column;
+    grid-auto-columns: 15%;
+    align-items: center;
+
+
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+    display: none;
+  }
+
+.genre-box {
+    padding: 10px 30px;
+    border-radius: 0px;
+    background-color: #FFDE4D;
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+}
+
+.genre-box:hover {
+    background-color: #FEEFAD;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.genre-box a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: center;
+}
 
 </style>
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-left: 20px; margin-right: 20px;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">Woodstock '99</a>
+    <a class="navbar-brand" href="{% url 'home' %}" style="color: #495057;">Woodstock '99</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="color: #495057;">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">About</a>
-<!--        </li>-->
+          <a class="nav-link" href="{% url 'shows' %}">Shows</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">Blog</a>
+        </li>
 <!--        <li class="nav-item dropdown">-->
 <!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            Dropdown-->
+<!--            Drop-->
 <!--          </a>-->
 <!--          <ul class="dropdown-menu">-->
-<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--            <li><hr class="dropdown-divider"></li>-->
-<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Vinyl LPs</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">CDs</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Cassettes</a></li>-->
 <!--          </ul>-->
 <!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
-<!--        </li>-->
+
       </ul>
       <div class="navbar-center">
         <form class="d-flex" role="search" method="GET" action="">
           <input name="q" class="form-control me-2 search-input-custom" type="search" placeholder="Search Album" aria-label="Search">
-          <button class="btn btn-outline-success search-btn-custom" type="submit">Search</button>
+          <button class="btn btn-light" type="submit">Search</button>
         </form>
       </div>
 
@@ -132,9 +165,9 @@
             </div>
           </a>
       </div>
-         <a href="{% url 'logout' %}" class="btn btn-light" role="button">Log Out</a>
+         <a href="{% url 'logout' %}" class="btn btn-light" role="button" style="color: #495057;">Log Out</a>
       {% else %}
-         <a href="{% url 'login' %}" class="btn btn-dark" role="button">Log In</a>
+         <a href="{% url 'login' %}" class="btn btn-dark" role="button" >Log In</a>
       {% endif %}
     </div>
   </div>

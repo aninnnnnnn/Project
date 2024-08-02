@@ -24,13 +24,13 @@
 .genre-box {
     padding: 10px 30px;
     border-radius: 0px;
-    background-color: #F5F7F8;
+    background-color: #FFDE4D;
     transition: background-color 0.3s, box-shadow 0.3s;
 
 }
 
 .genre-box:hover {
-    background-color: #f0f0f0;
+    background-color: #FEEFAD;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,14 +45,14 @@
     padding: 10px 50px;
     display: flex;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: 0px;
     justify-content: left;
 }
 
 .card {
-  width: 22rem;
+  width: 22.16rem;
   margin-left: 0px;
-  border: 1px solid #black;
+  border: 1px solid #151515;
   border-radius: 0px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -60,7 +60,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .card:hover {
-  transform: scale(1.01);
+  transform: scale(1.008);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .card img {
@@ -116,7 +116,7 @@
   padding: 6px 12px;
   background-color: white;
   border: 0px solid #white;
-  color: #black;
+  color: #495057;";
   text-decoration: none;
   border-radius: 0px;
   transition: background-color 0.3s;
@@ -141,24 +141,8 @@ margin-top: 10px;
 
 </style>
 
-<div>
-    <a href="{% url 'add' %}" type="button" class="btn btn-dark" style = 'margin-left: 50px; width: 180px;'> Add Album </a>
-</div>
-<br>
 <div class="home-container">
 
-     <div class="genres">
-        <div class="genre-box">
-            <a href="{{request.path}}">All ({{genres.count}})</a>
-        </div>
-        {% for genre in genres %}
-        <div class="genre-box">
-            <a href="{{request.path}}?q={{genre.name}}">{{genre}}</a>
-        </div>
-
-        {% endfor %}
-     </div>
-    <br>
     <div>
         <div class="card-container" >
               {% for album in albums %}

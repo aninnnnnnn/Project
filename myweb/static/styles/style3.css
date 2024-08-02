@@ -1,0 +1,478 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+
+}
+.carousel {
+    position: relative;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+    position: relative;
+}
+
+.carousel-item img {
+    height: 300px;
+    object-fit: cover;
+    justify-content: left;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.25rem;
+}
+
+.carousel-caption .btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+.Add-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+}
+
+.Add-form {
+    background: #FFDE4D;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+
+}
+
+.Add-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Add-form input[type="submit"] {
+    width: 100%;
+    background: #black;
+    color: #black;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.Add-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.Add-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Add-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Add-form a:hover {
+    text-decoration: underline;
+}
+
+.Add-form input[type="text"], .Add-form input[type="password"], .Add-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.Add-form input[type="submit"] {
+    background: #000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.Add-form input[type="submit"]:hover {
+    background: #black;
+}
+
+
+
+.details-container {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-left: 50px;
+    padding: 40px;
+    height: auto;
+}
+
+.details-form{
+    width:1350px;
+}
+
+.details-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0px;
+    color: #495057;
+}
+.details-form a {
+    font-weight: bold;
+    color: #495057;
+}
+.details-form p {
+    top-margin: 10xp;
+    text-align: left;
+    color: #495057;
+}
+
+.details-form h4 {
+    color: #495057;
+    text-align: left;
+}
+
+
+.details-form a:hover {
+    text-decoration: underline;
+}
+
+.btn-dark {
+  display: inline-block;
+  wrap: flex;
+  padding: 8px 12px;
+  background-color: black;
+  border: 0px solid #black;
+  color: #black;
+
+  border-radius: 0px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin: 0px;
+  width: 80px;
+  align: center;
+  }
+
+.btn-light {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: white;
+  border: 0px solid #white;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 0px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin: 5px;
+  width: 80px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.login-form {
+    background: #FFDE4D;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+
+}
+
+.login-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 0.1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    width: 100%;
+    background: #111111;
+    color: #F6F6F6;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background: #black;
+}
+
+.login-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.login-form h4 {
+    color: #495057;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-form a {
+    color: #495057;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+
+.Register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 128vh;
+}
+
+.Register-form {
+    background: #FFDE4D;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+
+}
+
+.Register-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Register-form input[type="text"], .Register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 0.1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.Register-form input[type="submit"] {
+    width: 100%;
+    background: #151515;
+    color: #F6F6F6;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.Register-form input[type="submit"]:hover {
+    background: #black;
+}
+
+.Register-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.Register-form h4 {
+    color: #495057;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Register-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Register-form a:hover {
+    text-decoration: underline;
+}
+
+
+.update-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 40px;
+}
+
+.update-form {
+     background: #FFDE4D;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+}
+
+.update-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.update-form input[type="text"], .update-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 0.1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.update-form input[type="submit"] {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.update-form input[type="submit"]:hover {
+    background: #black;
+}
+
+.update-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.update-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.update-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.update-form a:hover {
+    text-decoration: underline;
+}
+
+.delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.delete-form {
+     background: #FFDE4D;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+
+}
+
+.delete-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.delete-form input[type="text"], .delete-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 0.1px solid #B4B4B8;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.delete-form input[type="submit"] {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.delete-form input[type="submit"]:hover {
+    background: #black;
+}
+
+.delete-form p {
+    margin: 0;
+    text-align: center;
+}
+
+.delete-form h4 {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-form a {
+    color: #black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-form a:hover {
+    text-decoration: underline;
+}
+

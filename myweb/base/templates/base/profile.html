@@ -9,6 +9,7 @@
 <style>
 .left-align {
     text-align: left;
+
 }
 
   .header-row {
@@ -20,33 +21,51 @@
 
 </style>
 
-    <div style="margin: 0px 50px; display: flex;">
+     <div class="genres" style="margin-left: 0px; margin-right: 0px;">
+        <div class="genre-box">
+            <a href="{{request.path}}">All ({{genres.count}})</a>
+        </div>
+        {% for genre in genres %}
+        <div class="genre-box">
+            <a href="{{request.path}}?q={{genre.name}}" >{{genre}}</a>
+        </div>
+
+        {% endfor %}
+     </div>
+<br>
+
+<div style="margin: 0px 50px; display: flex; border: 1px solid #495057; padding: 20px; border-radius: 0px; ">
+    <div>
+        <img src="{{ request.user.avatar.url }}" width="100px" height="100px" style="border-radius: 50%;">
+
+
+    </div>
+
+    <div style="padding: 2px; margin: 0px 50px; color: #495057;">
+        <h4>{{ request.user.username }}</h4>
+        <p>Bio: {{ request.user.bio }}</p>
         <div>
-            <img src="{{ request.user.avatar.url }}" width="100px" height="100px" style="border-radius: 50%;">
-
-            <div>
-            <a href="{% url 'update_user' %}" type="button" style = 'width: 120px;'> Update Profile </a>
-            </div>
-        </div>
-
-        <div style="padding: 2px; margin: 0px 50px;">
-            <h4>{{ request.user.username }}</h4>
-            <p> Albums: {{request.user.albums.count}} </p>
-            <p> Bio: {{request.user.bio}} </p>
-
+            <a href="{% url 'update_user' %}" type="button" style='width: 120px;'>Update Profile</a>
         </div>
     </div>
-    <hr>
+</div>
+
+<br>
+
+
     <div class="header-row">
-        <h1 class="left-align">MY GALLERY</h1>
+        <h1 class="left-align">Favorite Albums</h1>
 
     </div>
-
-
+<div>
+    <a href="{% url 'add' %}" type="button" class="btn btn-dark" style = 'margin-left: 50px; width: 180px;'> + Add Album </a>
+</div>
+<br>
 
 
 
  {% include 'base/albums.html' %}
+
 
 {% endblock content %}
 

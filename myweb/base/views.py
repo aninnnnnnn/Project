@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Album, User, Genre, Artist, Comment
+from .models import Album, User, Genre, Artist, Comment, Show, Song
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationFrom, AlbumForm, UserForm
+from .forms import MyUserCreationFrom, AlbumForm, UserForm, SongForm
 from .seeder import seeder_func
 from django.contrib import messages
 
@@ -19,11 +19,18 @@ def home(request):
     context = {"albums": albums, "genres": genres}
     return render(request, 'base/home.html', context)
 
-@login_required(login_url='login')
+
 def about(request):
     return render(request, 'base/about.html')
 
 
+def shows(request):
+    show = Show.objects.all()
+    context = {'shows': show}
+    return render(request, 'base/shows.html', context)
+
+
+@login_required(login_url='login')
 def profile(request, pk):
     user = User.objects.get(id=int(pk))
 
@@ -36,6 +43,7 @@ def profile(request, pk):
     return render(request, 'base/profile.html', context)
 
 
+@login_required(login_url='login')
 def adding(request, id):
     album = Album.objects.get(id=id)
     user = request.user
@@ -97,6 +105,7 @@ def register_page(request):
     return render(request, 'base/register.html', context)
 
 
+@login_required(login_url='login')
 def add_album(request):
     artists = Artist.objects.all()
     genres = Genre.objects.all()
@@ -124,7 +133,6 @@ def add_album(request):
     return render(request, 'base/add_album.html', context)
 
 
-@login_required(login_url='login')
 def details(request, id):
     album = Album.objects.get(id=id)
     album_comments = album.comment_set.all().order_by('-created')
@@ -161,6 +169,7 @@ def update_user(request):
     return render(request, 'base/update_user.html', {'form': form})
 
 
+@login_required(login_url='login')
 def delete_comment(request, id):
     comment = Comment.objects.get(id=id)
     album = comment.album
@@ -168,3 +177,48 @@ def delete_comment(request, id):
         comment.delete()
         return redirect('details', album.id)
     return render(request, 'base/delete.html', {'obj': comment})
+
+
+@login_required(login_url='login')
+def update_album(request, id):
+    album = Album.objects.get(id=id)
+    form = AlbumForm(instance=album)
+
+    if request.method == 'POST':
+        form = AlbumForm(request.POST, request.FILES, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect('details', album.id)
+
+    return render(request, 'base/update_album.html', {'form': form})
+
+#
+# @login_required(login_url='login')
+# def add_song(request, pk):
+#     album = get_object_or_404(Album, pk=pk)
+#     songs = album.songs.all()
+#     if request.method == 'POST':
+#         song_form = SongForm(request.POST, request.FILES)
+#         if song_form.is_valid():
+#             song = song_form.save(commit=False)
+#             song.album = album
+#             song.save()
+#             return redirect('add_song', pk=album.pk)
+#     else:
+#         song_form = SongForm()
+#     return render(request, 'add_song.html', {'album': album, 'songs': songs, 'song_form': song_form})
+#
+#
+# @login_required(login_url='login')
+# def update_song(request, id):
+#     song = Song.objects.get(id=id)
+#     album = song.album
+#     form = SongForm(instance=song)
+#
+#     if request.method == 'POST':
+#         form = SongForm(request.POST, request.FILES, instance=song)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('update_song', song.id)
+#
+#     return render(request, 'base/update_song.html', {'form': form})

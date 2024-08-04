@@ -133,18 +133,19 @@
           <a class="nav-link" href="{% url 'shows' %}">Shows</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">Blog</a>
+          <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
-<!--        <li class="nav-item dropdown">-->
-<!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            Drop-->
-<!--          </a>-->
-<!--          <ul class="dropdown-menu">-->
-<!--            <li><a class="dropdown-item" href="#">Vinyl LPs</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">CDs</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Cassettes</a></li>-->
-<!--          </ul>-->
-<!--        </li>-->
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Drop
+          </a>
+          <ul class="dropdown-menu">
+            {% for artist in artists %}
+            <li><a class="dropdown-item" href="{% url 'artist' artist.id %}">{{ artist.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
 
       </ul>
       <div class="navbar-center">

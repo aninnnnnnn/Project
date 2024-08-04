@@ -17,13 +17,14 @@
                 </div>
                 <br>
                 <div>
-                    <div>
-                        Album: {{album.name}}
-                    </div>
 
                     <div>
-                        Artist: {{album.artist}}
+                        <a href="{% url 'artist' album.artist.id %}">{{album.artist}}</a>
                     </div>
+                    <div>
+                        {{album.name}}
+                    </div>
+
 
                     <div>
                         Genre:
@@ -73,9 +74,7 @@
             {% if request.user == album.creator %}
             <a href="{% url 'update_album' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px; color: #495057; background: white; border-color:white;">Update Album</a>
             {% endif %}
-             {% if request.user == album.creator %}
-            <a href="{% url 'update_song' album.id %}" type="button" class="btn btn-dark" style="border-radius: 0px; width: 200px; color: #495057; background: white; border-color:white;">Update Song</a>
-            {% endif %}
+
             <hr>
          </div>
 

@@ -16,7 +16,9 @@ def home(request):
     albums = Album.objects.filter(Q(name__icontains=q) | Q(genre__name__icontains=q) | Q(artist__name__icontains=q))
     albums = list(dict.fromkeys(albums))
     genres = Genre.objects.all()
-    context = {"albums": albums, "genres": genres}
+    show = Show.objects.all()
+    artists = Artist.objects.all()
+    context = {"albums": albums, "genres": genres, "shows": show, "artists": artists}
     return render(request, 'base/home.html', context)
 
 
@@ -24,10 +26,10 @@ def about(request):
     return render(request, 'base/about.html')
 
 
-def shows(request):
+def shows_page(request):
     show = Show.objects.all()
     context = {'shows': show}
-    return render(request, 'base/shows.html', context)
+    return render(request, 'base/shows_page.html', context)
 
 
 @login_required(login_url='login')
@@ -120,9 +122,9 @@ def add_album(request):
 
         form = AlbumForm(request.POST)
         new_album = Album(cover=request.FILES['cover'], name=form.data['name'], artist=artist, year=form.data['year'],
-                          file=request.FILES['file'], creator=request.user)
+                        creator=request.user)
 
-        if not (Album.objects.filter(file=new_album.file)) or (Album.objects.filter(name=new_album.name)):
+        if not (Album.objects.filter(name=new_album.name)):
             new_album.save()
             new_album.genre.add(genre)
             return redirect('home')
@@ -142,7 +144,7 @@ def details(request, id):
             album=album,
             body=request.POST.get('body')
         )
-    return render(request, 'base/details.html', {'album':album, 'comments': album_comments})
+    return render(request, 'base/details.html', {'album': album, 'comments': album_comments})
 
 
 def delete_album(request, id):
@@ -194,8 +196,8 @@ def update_album(request, id):
 
 #
 # @login_required(login_url='login')
-# def add_song(request, pk):
-#     album = get_object_or_404(Album, pk=pk)
+# def add_song(request, id):
+#     album = get_object_or_404(Album, id=id)
 #     songs = album.songs.all()
 #     if request.method == 'POST':
 #         song_form = SongForm(request.POST, request.FILES)
@@ -203,7 +205,7 @@ def update_album(request, id):
 #             song = song_form.save(commit=False)
 #             song.album = album
 #             song.save()
-#             return redirect('add_song', pk=album.pk)
+#             return redirect('add_song', id=album.id)
 #     else:
 #         song_form = SongForm()
 #     return render(request, 'add_song.html', {'album': album, 'songs': songs, 'song_form': song_form})
@@ -222,3 +224,9 @@ def update_album(request, id):
 #             return redirect('update_song', song.id)
 #
 #     return render(request, 'base/update_song.html', {'form': form})
+
+
+def artist_page(request, id):
+    artist = Artist.objects.get(id=id)
+    albums = Album.objects.filter(artist=artist)
+    return render(request, 'base/artist_page.html', {'artist': artist, 'albums': albums})

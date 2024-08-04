@@ -1,0 +1,65 @@
+    <style>
+
+        .artist-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px 0;
+            background: #fff;
+        }
+        .artist-content .artist-text, .artist-content .artist-image {
+            flex: 1;
+            padding: 20px;
+        }
+        .artist-text {
+            max-width: 800px;
+        }
+        .artist-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0px;
+        }
+        .artist-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .artist-text p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #666;
+        }
+
+    </style>
+
+
+{% extends 'main.html' %}
+
+{% block title %} <title>Artist Page</title> {% endblock %}
+
+{% block content %}
+
+    <div style="margin-left: 50px; margin-right: 50px;">
+        <section class="artist-content">
+            <div class="artist-text">
+                <h1 style="color: #666;">{{ artist.name }}</h1>
+                <br>
+                <p>{{ artist.bio }}</p>
+            </div>
+            <div class="artist-image">
+                {% if artist.picture %}
+                    <img src="{{ artist.picture.url }}" alt="{{ artist.name }}">
+                {% else %}
+                    None
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <hr style="margin-left: 50px; margin-right: 50px; color: #666;">
+
+    <div>
+        <h4 style="margin-left: 50px; color: #666;"> Albums By {{ artist.name }}:</h4>
+        {% include 'base/albums.html' %}
+
+    </div>
+
+{% endblock content %}

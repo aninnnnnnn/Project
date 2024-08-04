@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 class Artist(models.Model):
     name = models.CharField(max_length=200)
+    picture = models.ImageField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -57,6 +59,7 @@ class User(AbstractUser):
     albums = models.ManyToManyField(Album, blank=True, related_name='users')
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default='avatar.jpg')
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -150,7 +150,7 @@ margin-top: 10px;
                         <img src="{{ album.cover.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{album.name | slice:":40"}}</h5>
-                          <p class="card-text">By {{album.artist}}</p>
+                          <a style="color: #fff" href="{% url 'artist' album.artist.id %}">{{album.artist}}</a>
                           <p class="card-text">Release Date: {{album.year}}</p>
                             <br>
 

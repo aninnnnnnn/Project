@@ -7,12 +7,13 @@
     .gallery {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
         justify-content: center;
     }
     .gallery-item {
         justify-content: center;
-        margin: 80px;
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 40px;
         flex: 1 1 calc(33% - 32px);
         box-sizing: border-box;
         border: 0px solid #ddd;
@@ -40,7 +41,7 @@
     }
 </style>
 <br>
-    <h1 style="margin-left:80px;">DON'T MISS...</h1>
+    <h1 style="margin-left:100px;">DON'T MISS...</h1>
 
     <div class="gallery">
     {% for show in shows %}

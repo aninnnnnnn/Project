@@ -1,37 +1,3 @@
-    <style>
-
-        .artist-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px 0;
-            background: #fff;
-        }
-        .artist-content .artist-text, .artist-content .artist-image {
-            flex: 1;
-            padding: 20px;
-        }
-        .artist-text {
-            max-width: 800px;
-        }
-        .artist-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0px;
-        }
-        .artist-text h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .artist-text p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #666;
-        }
-
-    </style>
-
-
 {% extends 'main.html' %}
 
 {% block title %} <title>Artist Page</title> {% endblock %}
@@ -39,15 +5,15 @@
 {% block content %}
 
     <div style="margin-left: 50px; margin-right: 50px;">
-        <section class="artist-content">
-            <div class="artist-text">
+        <section class="artist-content" style="padding: 20px; display: flex; flex: 1; flex-wrap: wrap; justify-content: center; padding: 20px 0; background: #fff;">
+            <div class="artist-text" style="flex: 1; max-width: 800px; padding: 20px;">
                 <h1 style="color: #666;">{{ artist.name }}</h1>
                 <br>
-                <p>{{ artist.bio }}</p>
+                <p style="font-size: 1.2em; line-height: 1.6; color: #666;">{{ artist.bio }}</p>
             </div>
-            <div class="artist-image">
+            <div class="artist-image" style="flex: 1; padding: 20px;">
                 {% if artist.picture %}
-                    <img src="{{ artist.picture.url }}" alt="{{ artist.name }}">
+                    <img style="max-width: 100%; height: auto; border-radius: 0px;" src="{{ artist.picture.url }}" alt="{{ artist.name }}">
                 {% else %}
                     None
                 {% endif %}

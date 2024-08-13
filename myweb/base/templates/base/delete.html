@@ -9,7 +9,7 @@
         <form class="delete-form" method="POST" action="">
             {% csrf_token %}
             <a href="{{ request.META.HTTP_REFERER }}"> Cancel </a>
-            <p>Are you sure you want to delete album: </p>
+            <p>Are you sure you want to delete: </p>
             <p>"{{ obj }}"</p>
             <br>
             <input type="submit" value="Delete">

@@ -26,7 +26,6 @@
     }
 
     .gallery-item .info {
-        width: 80%;
         padding: 16px;
         background: #f8f9fa;
     }
@@ -49,7 +48,18 @@
         <img src="{{ show.show.url }}" alt="Show Image">
         <div class="info">
             <h3>Title: {{show.name}}</h3>
+            <br>
+            <a href="{% if show.artist %}{% url 'artist' show.artist.id %}{% endif %}">
+                Artist:
+                {% if show.artist %}
+                    {{ show.artist.name }}
+                {% else %}
+                    Unknown Artist
+                {% endif %}
+            </a>
+            <p>Location: {{show.location}}</p>
             <p>Date: {{show.showdate}}</p>
+
         </div>
     </div>
 

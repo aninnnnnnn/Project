@@ -23,17 +23,21 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'base/about.html')
+    artists = Artist.objects.all()
+    context = {"artists": artists}
+    return render(request, 'base/about.html', context)
 
 
 def shows_page(request):
     show = Show.objects.all()
-    context = {'shows': show}
+    artists = Artist.objects.all()
+    context = {'shows': show, "artists": artists}
     return render(request, 'base/shows_page.html', context)
 
 
 @login_required(login_url='login')
 def profile(request, pk):
+    artists = Artist.objects.all()
     user = User.objects.get(id=int(pk))
 
     q = request.GET.get('q') if request.GET.get('q') != None else ""
@@ -41,7 +45,7 @@ def profile(request, pk):
     albums = user.albums.filter(Q(name__icontains=q) | Q(genre__name__icontains=q) | Q(artist__name__icontains=q))
     albums = list(set(albums))
     genres = Genre.objects.all()
-    context = {'albums': albums, 'user': user, 'genres': genres}
+    context = {'albums': albums, 'user': user, 'genres': genres, "artists": artists}
     return render(request, 'base/profile.html', context)
 
 
@@ -55,11 +59,12 @@ def adding(request, id):
 
 def delete(request, id):
     album = Album.objects.get(id=id)
+    artists = Artist.objects.all()
     if request.method == "POST":
         request.user.albums.remove(album)
         return redirect('profile', request.user.id)
 
-    return render(request, 'base/delete.html', {'obj': album})
+    return render(request, 'base/delete.html', {'obj': album, 'artists': artists})
 
 
 def login_page(request):
@@ -93,7 +98,7 @@ def logout_user(request):
 
 def register_page(request):
     form = MyUserCreationFrom()
-
+    artists = Artist.objects.all()
     if request.method == 'POST':
         form = MyUserCreationFrom(request.POST)
         if form.is_valid():
@@ -103,7 +108,7 @@ def register_page(request):
             login(request, user)
             return redirect('home')
 
-    context = {'form': form}
+    context = {'form': form, 'artists': artists}
     return render(request, 'base/register.html', context)
 
 
@@ -138,47 +143,50 @@ def add_album(request):
 def details(request, id):
     album = Album.objects.get(id=id)
     album_comments = album.comment_set.all().order_by('-created')
+    artists = Artist.objects.all()
     if request.method == 'POST':
         comment = Comment.objects.create(
             user=request.user,
             album=album,
             body=request.POST.get('body')
         )
-    return render(request, 'base/details.html', {'album': album, 'comments': album_comments})
+    return render(request, 'base/details.html', {'album': album, 'comments': album_comments, 'artists': artists})
 
 
 def delete_album(request, id):
     album = Album.objects.get(id=id)
+    artists = Artist.objects.all()
     if request.method == 'POST':
         album.file.delete()
         album.cover.delete()
         album.delete()
         return redirect('home')
-    return render(request, 'base/delete.html', {'obj': album})
+    return render(request, 'base/delete.html', {'obj': album, 'artists': artists})
 
 
 @login_required(login_url='login')
 def update_user(request):
     user = request.user
     form = UserForm(instance=user)
-
+    artists = Artist.objects.all()
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect('profile', user.id)
 
-    return render(request, 'base/update_user.html', {'form': form})
+    return render(request, 'base/update_user.html', {'form': form, 'artists':artists})
 
 
 @login_required(login_url='login')
 def delete_comment(request, id):
     comment = Comment.objects.get(id=id)
     album = comment.album
+    artists = Artist.objects.all()
     if request.method == 'POST':
         comment.delete()
         return redirect('details', album.id)
-    return render(request, 'base/delete.html', {'obj': comment})
+    return render(request, 'base/delete.html', {'obj': comment, 'artists': artists})
 
 
 @login_required(login_url='login')
@@ -194,39 +202,10 @@ def update_album(request, id):
 
     return render(request, 'base/update_album.html', {'form': form})
 
-#
-# @login_required(login_url='login')
-# def add_song(request, id):
-#     album = get_object_or_404(Album, id=id)
-#     songs = album.songs.all()
-#     if request.method == 'POST':
-#         song_form = SongForm(request.POST, request.FILES)
-#         if song_form.is_valid():
-#             song = song_form.save(commit=False)
-#             song.album = album
-#             song.save()
-#             return redirect('add_song', id=album.id)
-#     else:
-#         song_form = SongForm()
-#     return render(request, 'add_song.html', {'album': album, 'songs': songs, 'song_form': song_form})
-#
-#
-# @login_required(login_url='login')
-# def update_song(request, id):
-#     song = Song.objects.get(id=id)
-#     album = song.album
-#     form = SongForm(instance=song)
-#
-#     if request.method == 'POST':
-#         form = SongForm(request.POST, request.FILES, instance=song)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('update_song', song.id)
-#
-#     return render(request, 'base/update_song.html', {'form': form})
-
 
 def artist_page(request, id):
+    artists = Artist.objects.all()
     artist = Artist.objects.get(id=id)
     albums = Album.objects.filter(artist=artist)
-    return render(request, 'base/artist_page.html', {'artist': artist, 'albums': albums})
+    shows = Show.objects.filter(artist=artist)
+    return render(request, 'base/artist_page.html', {'artist': artist, 'albums': albums, 'artists': artists, 'shows': shows})

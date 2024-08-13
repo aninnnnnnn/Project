@@ -2,10 +2,22 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class Show(models.Model):
+    name = models.CharField(max_length=200)
+    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True, blank=True, related_name='shows')
+    showdate = models.DateTimeField(null=True, blank=True)
+    show = models.ImageField(null=True, blank=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Artist(models.Model):
     name = models.CharField(max_length=200)
     picture = models.ImageField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
+    show = models.ManyToManyField(Show, blank=True, related_name='perf_artist')
 
     def __str__(self):
         return self.name
@@ -18,13 +30,6 @@ class Genre(models.Model):
         return self.name
 
 
-class Show(models.Model):
-    name = models.CharField(max_length=200)
-    showdate = models.DateTimeField(null=True, blank=True)
-    show = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Album(models.Model):

@@ -157,7 +157,7 @@ def delete_album(request, id):
     album = Album.objects.get(id=id)
     artists = Artist.objects.all()
     if request.method == 'POST':
-        album.file.delete()
+
         album.cover.delete()
         album.delete()
         return redirect('home')
